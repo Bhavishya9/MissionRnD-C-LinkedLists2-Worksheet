@@ -19,5 +19,18 @@ struct node {
 };
 
 struct node * reverseLinkedList(struct node *head) {
-	return NULL;
+	if (head==NULL)//if the input list is empty identify as error case and return NULL
+		return NULL;
+	struct node *current, *prev, *successor;//take three pointers of type structure node
+	prev = NULL;
+	current = head;//assign the current to start of the list
+	while (current != NULL)//tranverse till the end of the list
+	{
+		successor = current->next;//node next to present node is assigned as successor
+		current->next = prev;//break the connection with node and the list and make it point to its predecessor
+		prev = current;//prev is the present node
+		current = successor;//continue to tranverse list by re assigning the present with successor node
+	}
+	head = prev;//reassign the head pointer or change the start of the list
+	return head;//return the reversed list
 }
